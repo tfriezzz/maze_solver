@@ -16,7 +16,7 @@ class Window:
 
     def wait_for_close(self):
         self.running = True
-        while self.running == True:
+        while self.running:
             self.redraw()
 
     def close(self):
@@ -50,18 +50,40 @@ class Line:
         )
 
 
-def main():
-    win = Window(800, 600)
-    my_point_1 = Point(30, 400)
-    my_point_2 = Point(55, 255)
-    my_line_1 = Line(my_point_1, my_point_2)
-    my_point_3 = Point(10, 500)
-    my_point_4 = Point(500, 600)
-    my_line_2 = Line(my_point_3, my_point_4)
-    win.draw_line(my_line_1, "red")
-    win.draw_line(my_line_2, "blue")
-    win.wait_for_close()
+class Cell:
+    def __init__(self, window_instance):
+        self.has_left_wall = True
+        self.has_right_wall = True
+        self.has_top_wall = True
+        self.has_bottom_wall = True
+        self.__x1 = -1
+        self.__x2 = -1
+        self.__y1 = -1
+        self.__y2 = -1
+        self.__win = window_instance
 
+    def draw(self, x1, y1, x2, y2, cell_color="black"):
+        self.__x1 = x1
+        self.__y1 = y1
+        self.__x2 = x2
+        self.__y2 = y2
 
-if __name__ == "__main__":
-    main()
+        cell_color = cell_color
+
+        top_left = Point(x1, y1)
+        top_right = Point(x2, y1)
+        bottom_left = Point(x1, y2)
+        bottom_right = Point(x2, y2)
+
+        if self.has_left_wall:
+            line = Line(top_left, bottom_left)
+            self.__win.draw_line(line, cell_color)
+        if self.has_right_wall:
+            line = Line(top_right, bottom_right)
+            self.__win.draw_line(line, cell_color)
+        if self.has_top_wall:
+            line = Line(top_left, top_right)
+            self.__win.draw_line(line, cell_color)
+        if self.has_bottom_wall:
+            line = Line(bottom_left, bottom_right)
+            self.__win.draw_line(line, cell_color)
