@@ -1,4 +1,6 @@
 from window import *
+from cell import *
+from maze import *
 
 
 def main():
