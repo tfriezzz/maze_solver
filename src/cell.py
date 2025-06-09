@@ -1,5 +1,5 @@
 from window import *
-from maze import *
+# from maze import *
 
 
 class Cell:
