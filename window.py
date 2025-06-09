@@ -67,6 +67,9 @@ class Cell:
         self.__y1 = y1
         self.__x2 = x2
         self.__y2 = y2
+        center_x = (self.__x1 + self.__x2) / 2
+        center_y = (self.__y1 + self.__y2) / 2
+        self.__center = Point(center_x, center_y)
 
         cell_color = cell_color
 
@@ -87,3 +90,11 @@ class Cell:
         if self.has_bottom_wall:
             line = Line(bottom_left, bottom_right)
             self.__win.draw_line(line, cell_color)
+
+    def draw_move(self, to_cell, undo=False):
+        if not undo:
+            red_line = Line(self.__center, to_cell.__center)
+            self.__win.draw_line(red_line, "red")
+        if undo:
+            grey_line = Line(self.__center, to_cell.__center)
+            self.__win.draw_line(grey_line, "grey")
