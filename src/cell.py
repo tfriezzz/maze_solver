@@ -34,18 +34,37 @@ class Cell:
             line = Line(top_left, bottom_left)
             if self.__win is not None:
                 self.__win.draw_line(line, cell_color)
+        elif not self.has_left_wall:
+            line = Line(top_left, bottom_left)
+            if self.__win is not None:
+                self.__win.draw_line(line, "white")
+
         if self.has_right_wall:
             line = Line(top_right, bottom_right)
             if self.__win is not None:
                 self.__win.draw_line(line, cell_color)
+        elif not self.has_right_wall:
+            line = Line(top_right, bottom_right)
+            if self.__win is not None:
+                self.__win.draw_line(line, "white")
+
         if self.has_top_wall:
             line = Line(top_left, top_right)
             if self.__win is not None:
                 self.__win.draw_line(line, cell_color)
+        elif not self.has_top_wall:
+            line = Line(top_left, top_right)
+            if self.__win is not None:
+                self.__win.draw_line(line, "white")
+
         if self.has_bottom_wall:
             line = Line(bottom_left, bottom_right)
             if self.__win is not None:
                 self.__win.draw_line(line, cell_color)
+        elif not self.has_bottom_wall:
+            line = Line(bottom_left, bottom_right)
+            if self.__win is not None:
+                self.__win.draw_line(line, "white")
 
     def draw_move(self, to_cell, undo=False):
         if not undo:

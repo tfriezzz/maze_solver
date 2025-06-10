@@ -22,7 +22,8 @@ def main():
     # test_cell.draw(200, 90, 500, 400, "green")
     # test_cell_1.draw_move(test_cell_2, True)
     # test_cell_2.draw_move(test_cell_3)
-    my_maze = Maze(1, 1, 15, 15, 30, 30, win)
+    my_maze = Maze(1, 1, 5, 5, 30, 30, win)
+    my_maze._Maze__break_entrance_and_exit()
     win.wait_for_close()
 
 
