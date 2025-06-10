@@ -3,7 +3,7 @@ from window import *
 
 
 class Cell:
-    def __init__(self, window_instance):
+    def __init__(self, window_instance=None):
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
@@ -32,21 +32,27 @@ class Cell:
 
         if self.has_left_wall:
             line = Line(top_left, bottom_left)
-            self.__win.draw_line(line, cell_color)
+            if self.__win is not None:
+                self.__win.draw_line(line, cell_color)
         if self.has_right_wall:
             line = Line(top_right, bottom_right)
-            self.__win.draw_line(line, cell_color)
+            if self.__win is not None:
+                self.__win.draw_line(line, cell_color)
         if self.has_top_wall:
             line = Line(top_left, top_right)
-            self.__win.draw_line(line, cell_color)
+            if self.__win is not None:
+                self.__win.draw_line(line, cell_color)
         if self.has_bottom_wall:
             line = Line(bottom_left, bottom_right)
-            self.__win.draw_line(line, cell_color)
+            if self.__win is not None:
+                self.__win.draw_line(line, cell_color)
 
     def draw_move(self, to_cell, undo=False):
         if not undo:
             red_line = Line(self.__center, to_cell.__center)
-            self.__win.draw_line(red_line, "red")
+            if self.__win is not None:
+                self.__win.draw_line(red_line, "red")
         if undo:
             grey_line = Line(self.__center, to_cell.__center)
-            self.__win.draw_line(grey_line, "grey")
+            if self.__win is not None:
+                self.__win.draw_line(grey_line, "grey")
