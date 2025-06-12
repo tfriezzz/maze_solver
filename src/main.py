@@ -22,9 +22,11 @@ def main():
     # test_cell.draw(200, 90, 500, 400, "green")
     # test_cell_1.draw_move(test_cell_2, True)
     # test_cell_2.draw_move(test_cell_3)
-    my_maze = Maze(1, 1, 10, 10, 30, 30, win)
+    my_maze = Maze(1, 1, 10, 10, 50, 50, win)
     my_maze._Maze__break_entrance_and_exit()
     my_maze._Maze__break_walls_r(0, 0)
+    my_maze._Maze__reset_cells_visited()
+    my_maze.solve()
     win.wait_for_close()
 
 
